@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classificador-dp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classificador
+  template:
+    metadata:
+      labels:
+        app: classificador
+    spec:
+      containers:
+        - name: classificador
+          image: victor98dl/classificador_rf:latest
+          ports:
+            - containerPort: 5000

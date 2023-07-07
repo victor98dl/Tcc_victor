@@ -1,0 +1,504 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 33606914
+    name: "c_ingress.t_l2_fwd"
+    alias: "t_l2_fwd"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 2
+    name: "hdr.ethernet.dst_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 3
+    name: "hdr.ethernet.src_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 4
+    name: "hdr.ethernet.ether_type"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  action_refs {
+    id: 16831479
+  }
+  action_refs {
+    id: 16822540
+  }
+  action_refs {
+    id: 16808599
+  }
+  action_refs {
+    id: 16800567
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 16800567
+    name: "NoAction"
+    alias: "NoAction"
+  }
+}
+actions {
+  preamble {
+    id: 16790516
+    name: "c_ingress.calculate_hash"
+    alias: "calculate_hash"
+  }
+}
+actions {
+  preamble {
+    id: 16818579
+    name: "c_ingress.send_D"
+    alias: "send_D"
+  }
+}
+actions {
+  preamble {
+    id: 16829569
+    name: "c_ingress.send_I"
+    alias: "send_I"
+  }
+}
+actions {
+  preamble {
+    id: 16799489
+    name: "c_ingress.send_x5_D"
+    alias: "send_x5_D"
+  }
+}
+actions {
+  preamble {
+    id: 16820299
+    name: "c_ingress.send_x5_I"
+    alias: "send_x5_I"
+  }
+}
+actions {
+  preamble {
+    id: 16842740
+    name: "c_ingress.send_x10_D"
+    alias: "send_x10_D"
+  }
+}
+actions {
+  preamble {
+    id: 16828717
+    name: "c_ingress.send_x10_I"
+    alias: "send_x10_I"
+  }
+}
+actions {
+  preamble {
+    id: 16828524
+    name: "c_ingress.clone_to_cpu"
+    alias: "clone_to_cpu"
+  }
+}
+actions {
+  preamble {
+    id: 16822540
+    name: "c_ingress.send_to_cpu"
+    alias: "send_to_cpu"
+  }
+}
+actions {
+  preamble {
+    id: 16831479
+    name: "c_ingress.set_out_port"
+    alias: "set_out_port"
+  }
+  params {
+    id: 1
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16808599
+    name: "c_ingress._drop"
+    alias: "_drop"
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 67146229
+    name: "packet_in"
+    alias: "packet_in"
+    annotations: "@controller_header(\"packet_in\")"
+  }
+  metadata {
+    id: 1
+    name: "ingress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_padding"
+    bitwidth: 7
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 67121543
+    name: "packet_out"
+    alias: "packet_out"
+    annotations: "@controller_header(\"packet_out\")"
+  }
+  metadata {
+    id: 1
+    name: "egress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_padding"
+    bitwidth: 7
+  }
+}
+registers {
+  preamble {
+    id: 369101828
+    name: "c_ingress.NumPacketsUDP"
+    alias: "NumPacketsUDP"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369138540
+    name: "c_ingress.NumPacketsTCP"
+    alias: "NumPacketsTCP"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369147440
+    name: "c_ingress.InitTimeFlow"
+    alias: "InitTimeFlow"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369154213
+    name: "c_ingress.LastTimePacket"
+    alias: "LastTimePacket"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369110757
+    name: "c_ingress.FlowState"
+    alias: "FlowState"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 2
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369146800
+    name: "c_ingress.TotPkts"
+    alias: "TotPkts"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369121968
+    name: "c_ingress.TotLenPkts"
+    alias: "TotLenPkts"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369162183
+    name: "c_ingress.PktLenMin"
+    alias: "PktLenMin"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369151746
+    name: "c_ingress.PktLenMax"
+    alias: "PktLenMax"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369161728
+    name: "c_ingress.TotLenSquare"
+    alias: "TotLenSquare"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 40
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369122308
+    name: "c_ingress.TotIAT"
+    alias: "TotIAT"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369123826
+    name: "c_ingress.TotIATsquare"
+    alias: "TotIATsquare"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 56
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369162408
+    name: "c_ingress.indexsFWD0"
+    alias: "indexsFWD0"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369149728
+    name: "c_ingress.indexsBWD0"
+    alias: "indexsBWD0"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369099838
+    name: "c_ingress.indexsFWD1"
+    alias: "indexsFWD1"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369140693
+    name: "c_ingress.indexsBWD1"
+    alias: "indexsBWD1"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 800000
+}
+registers {
+  preamble {
+    id: 369149567
+    name: "c_ingress.ContIndexs"
+    alias: "ContIndexs"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 369119012
+    name: "c_ingress.InitTimeWindow"
+    alias: "InitTimeWindow"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 48
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369118782
+    name: "c_ingress.WindowId"
+    alias: "WindowId"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 16
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369160165
+    name: "c_ingress.Carril"
+    alias: "Carril"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 2
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369111455
+    name: "c_ingress.colitions"
+    alias: "colitions"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 16
+      }
+    }
+  }
+  size: 1
+}
+registers {
+  preamble {
+    id: 369150792
+    name: "c_ingress.tag"
+    alias: "tag"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 1
+      }
+    }
+  }
+  size: 800000
+}
+type_info {
+}
